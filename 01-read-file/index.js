@@ -8,13 +8,6 @@ readableStream.on('end', () => console.log(data));
 readableStream.on('error', error => console.log(error.message));
 
 
-// fs.readFile(
-//   path.join(__dirname, 'text.txt'),
-//   'utf-8',
-//   (err, data) => {
-//       if (err) throw err;
-//       console.log(data);
-//   }
-// );
+// делал на Node версии 18.12.1 (LTS)
 
 
