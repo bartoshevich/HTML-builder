@@ -41,17 +41,6 @@ function mergeFiles(pathDir) {
         if (stats.isFile() && path.extname(file).slice(1) === 'css') {
           let pathToFile = path.join(__dirname, 'styles', file);
 
-          // --- Variant #1 --- 
-          //
-          // fs.readFile(
-          //   pathToFile,
-          //   'utf-8',
-          //   (err, data) => {
-          //     if (err) throw err;
-          //     bundle.write(data);
-          //   }
-          // );
-
           const readableStream = fs.createReadStream(pathToFile, 'utf-8');
           readableStream.on('data', chunk => bundle.write(chunk));
 

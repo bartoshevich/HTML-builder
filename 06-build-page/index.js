@@ -3,9 +3,6 @@ const {createReadStream, createWriteStream, constants } = require('fs');
 const path = require('path');
 const { pipeline } = require('stream/promises')
 
-// const pathToArticle = path.join(__dirname, 'components', 'articles.html');
-// const pathToFooter = path.join(__dirname, 'components', 'footer.html');
-// const pathToHeader = path.join(__dirname, 'components', 'header.html');
 const pathToComponents = path.join(__dirname, 'components');
 const pathToTemplate = path.join(__dirname, 'template.html');
 const pathToSourceStyles = path.join(__dirname, 'styles');
@@ -45,43 +42,13 @@ fs.readFile(
           });
         });
       }
-    })
-
-    // fs.readFile(pathToArticle, 'utf8', (error, article) => {
-    //   if (error) throw error;
-    //   data = data.replace(/\{\{articles\}\}/, article);
-    //   fs.writeFile(pathToIndex, data, (err) => {
-    //     if (err)
-    //       console.log(err);
-    //   });
-    // });
-
-    // fs.readFile(pathToHeader, 'utf8', (error, header) => {
-    //   if (error) throw error;
-    //   data = data.replace(/\{\{header\}\}/, header);
-
-    //   fs.writeFile(pathToIndex, data, (err) => {
-    //     if (err)
-    //       console.log(err);
-    //   });
-    // });
-
-    // fs.readFile(pathToFooter, 'utf8', (error, footer) => {
-    //   if (error) throw error;
-    //   data = data.replace(/\{\{footer\}\}/, footer);
-
-    //   fs.writeFile(pathToIndex, data, (err) => {
-    //     if (err)
-    //       console.log(err);
-    //   });
-    // });
+    })   
 
   }
 );
 
 try {
   mergeStyles(pathToSourceStyles);
-  // copyFiles(pathToSourceAssets);
 } catch (error) {
   console.log(error.message);
 }
@@ -109,8 +76,6 @@ function mergeStyles(pathDir) {
     }
   })
 };
-
-
 
 
 
@@ -144,41 +109,3 @@ async function copyAssets(pathToSourceAssets) {
   }
 }
 copyAssets(pathToSourceAssets)
-
-// 
-
-// function copyFiles(pathDir) {
-//   fs.promises.readdir(pathDir, 'utf8', { withFileTypes: true }).then((files) => {
-//     for (let item of files) {
-//       fs.stat(pathDir + '/' + item, (err, stats) => {
-//         if (err) throw err;
-//         if (stats.isDirectory()) {
-
-//           fs.mkdir(path.join(pathToProjectAssets, item), { recursive: true }, err => {
-//             if (err) throw err;
-//           });
-
-//           copyFiles(path.join(pathDir, item))
-
-//         } else {
-//           let pathToSource = path.join(pathDir, item);
-
-//           fs.mkdir(path.join(pathToProjectAssets, path.basename(path.dirname(pathToSource))), { recursive: true }, err => {
-//             if (err) throw err;
-//           });
-
-//           let pathToDestination = path.join(pathToProjectAssets, path.basename(path.dirname(pathToSource)), item);
-
-//           fs.copyFile(pathToSource, pathToDestination, (err) => {
-//             if (err) throw err;
-//           });
-
-//         }
-//       })
-//     }
-//   })
-// }
-
-
-
-
